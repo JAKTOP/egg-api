@@ -36,22 +36,54 @@ class UserController extends Controller {
     }
     async read(){
         let id=parseInt(this.ctx.params.id);
-
-        let datail=demo.find(item=>item.id===id);
+        
+        let user=await this.ctx.model.User.findByPk(id);
+        
+       
         this.ctx.body={
             msg:'ok',
-            data:datail
+            data:user
         }
     }
     async create(){
-        console.log(this.ctx.request.body);
-        console.log(this.ctx.request);
+        // let res=await this.ctx.model.User.create({
+        //     username:"T1",
+        //     password:"123456",
+        //     sex:"男"
+        // });
+        let res=await this.ctx.model.User.bulkCreate([
+            
+            {
+                username:"T12",
+                password:"123456",
+                sex:"男"
+            },
+            {
+                username:"T13",
+                password:"123456",
+                sex:"男"
+            },
+            {
+                username:"T14",
+                password:"123456",
+                sex:"男"
+            },
+            {
+                username:"T15",
+                password:"123456",
+                sex:"男"
+            },
+            {
+                username:"T16",
+                password:"123456",
+                sex:"男"
+            }
+
+
+        ]);
         this.ctx.body={
             msg:'ok',
-            data:{
-                username:'t1',
-                nicknam:'tt1'
-            }
+            data:res
         }
     }
 
